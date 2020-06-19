@@ -1,0 +1,10 @@
+{% extends 'aa_layout.html' %}
+
+{% block content %}
+{% for product in products %}
+
+    <p><a href="{{ url_for('product_details', slug=product.slug) }}">{{ product.title }}</a></p>
+{% endfor %}
+
+
+{% endblock %}
