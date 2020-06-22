@@ -6,5 +6,10 @@
     <p><a href="{{ url_for('product_details', slug=product.slug) }}">{{ product.title }}</a></p>
 {% endfor %}
 
+<hr>
+{% for tag in tags %}
+
+    <p><a href="{{ url_for('tag_details', slug=tag.slug) }}">{{ tag.name }}</a></p>
+{% endfor %}
 
 {% endblock %}
