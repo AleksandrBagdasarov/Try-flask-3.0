@@ -21,12 +21,29 @@
 <body class="bg-light">
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <!-- Navbar content -->
-        <a class="navbar-brand">Navbar</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Mysite</a>
+
+        <form class="form-inline" action="{{ url_for('home') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name=q
+                value="{{ request.args.get('q', '') }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
     </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3 py-md-3 bd-sidebar" style="background-color: #f1f9ff;">
+                {% block left %}
+                {% endblock %}
+            </div>
+
+            <div class="col-9 py-md-3 pl-md-5 bd-content bg-light" role="main">
+                {% block mid %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
     {% block content %}
     {% endblock %}
 

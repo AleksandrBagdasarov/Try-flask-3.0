@@ -1,9 +1,13 @@
-from flask import redirect, render_template, url_for
+from flask import redirect, render_template, request, url_for
 from mysite.models import Product, Tag
 
 
 def home():
-    products = Product.query.all()
+    q = request.args.get('q')
+    if q:
+        products = Product.query.filter(Product.title.contains(q)).all()
+    else:
+        products = Product.query.all()
     tags = Tag.query.all()
     return render_template('home.html', title='Home', products=products, tags=tags)
 
